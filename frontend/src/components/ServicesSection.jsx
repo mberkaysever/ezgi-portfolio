@@ -1,48 +1,35 @@
-import React from 'react';
-import { Palette, Camera, Layout, Lightbulb } from 'lucide-react';
+import React, { useMemo } from "react";
+import { Palette, Camera, Layout, Lightbulb } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
+
+const ICONS = [Palette, Layout, Camera, Lightbulb];
 
 const ServicesSection = () => {
-  const services = [
-    {
-      icon: Palette,
-      title: 'Brand Identity',
-      description: 'Creating unique visual identities that reflect your brand values and resonate with your audience.'
-    },
-    {
-      icon: Layout,
-      title: 'Web Design',
-      description: 'Designing beautiful, user-friendly websites that deliver exceptional digital experiences.'
-    },
-    {
-      icon: Camera,
-      title: 'Photography',
-      description: 'Professional photography services for products, portraits, and editorial content.'
-    },
-    {
-      icon: Lightbulb,
-      title: 'Art Direction',
-      description: 'Strategic creative direction to bring your vision to life with clarity and impact.'
-    }
-  ];
+  const { t } = useLanguage();
+  const items = t("services.items");
+
+  const services = useMemo(() => {
+    if (!Array.isArray(items)) return [];
+    return items.map((item, index) => ({
+      icon: ICONS[index] ?? Palette,
+      title: item.title,
+      description: item.description,
+    }));
+  }, [items]);
 
   return (
-    <section className="py-32 px-12 bg-black text-white">
+    <section id="design" className="py-32 px-12 bg-black/[0.94] text-white scroll-mt-24">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
         <div className="mb-20">
-          <h2 className="text-6xl font-black mb-4">Services</h2>
-          <p className="text-xl text-gray-400">What I can do for you</p>
+          <h2 className="text-6xl font-black mb-4">{t("services.title")}</h2>
+          <p className="text-xl text-gray-400">{t("services.subtitle")}</p>
         </div>
 
-        {/* Services Grid */}
         <div className="grid grid-cols-2 gap-16">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <div 
-                key={index}
-                className="group cursor-pointer"
-              >
+              <div key={index} className="group cursor-pointer">
                 <div className="mb-6">
                   <Icon className="w-12 h-12 text-white group-hover:text-pink-500 transition-colors duration-300" />
                 </div>

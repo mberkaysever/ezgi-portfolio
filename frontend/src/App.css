@@ -1,19 +1,75 @@
-/* Smooth scrolling */
-html {
+/* Fixed full-viewport background art */
+.background-art {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  .background-art img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 1;
+    filter: grayscale(100%);
+    animation: none;
+  }
+  
+  /* If you want animation later, re-enable it above */
+  /*
+  .background-art img {
+    animation: background-art-float 15s ease-in-out infinite;
+    will-change: transform;
+  }
+  */
+  
+  @keyframes background-art-float {
+    0% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(5px, -4px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+  
+  #root {
+    position: relative;
+    min-height: 100vh;
+    isolation: isolate;
+  }
+  
+  .app-shell {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    background: transparent;
+  }
+  
+  /* Smooth scrolling */
+  html {
     scroll-behavior: smooth;
-}
-
-/* Remove default margins */
-* {
+  }
+  
+  /* Remove default margins */
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-/* Prevent text selection on hero elements */
-.select-none {
+  }
+  
+  /* Prevent text selection on hero elements */
+  .select-none {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
+  }

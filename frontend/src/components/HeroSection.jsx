@@ -1,111 +1,93 @@
-import React from 'react';
-import { Button } from './ui/button';
+import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
+import { useLanguage } from "../context/LanguageContext";
+import { supabase, isSupabaseConfigured } from "../lib/supabase";
+
+const SHOPIER_URL =
+  "https://www.shopier.com/EzgiAysever?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnkH6fF1iwpys6hTz-dfP6uHpgvI9S2X6fPFR2_xmKKLURHjAEY3pmKGwddIg_aem_Ha1dh4_T2jk6UEmjf29ZxA&utm_id=97760_v0_s00_e0_tv3_a1dennhbdw4sro_tp1";
 
 const HeroSection = () => {
-  const brands = ['AUDIBLE', 'TISSOT', 'OLYMPIA', 'VEUVE CLICQUOT'];
+  const { t, locale } = useLanguage();
+  const [heroRow, setHeroRow] = useState(null);
+
+  useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) return;
+    let cancelled = false;
+    supabase
+      .from("hero_settings")
+      .select("*")
+      .eq("id", 1)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!cancelled) setHeroRow(data);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const pick = (trVal, enVal) => {
+    const v = locale === "tr" ? trVal : enVal;
+    return typeof v === "string" && v.trim() !== "" ? v.trim() : null;
+  };
+
+  const name = pick(heroRow?.name_tr, heroRow?.name_en) || t("hero.name");
+  const role = pick(heroRow?.role_tr, heroRow?.role_en) || t("hero.role");
+  const locations =
+    pick(heroRow?.locations_tr, heroRow?.locations_en) || t("hero.locations");
 
   return (
-    <section className="relative min-h-screen bg-white flex items-center justify-center overflow-hidden pt-20">
-      {/* Small intro text at top center */}
-      <div className="absolute top-28 left-1/2 transform -translate-x-1/2 z-30">
-        <p className="text-base text-gray-600 whitespace-nowrap">
-          Hi, my name is Alex and I am a freelance
-        </p>
-      </div>
-
-      {/* Main typography layers */}
-      <div className="relative w-full h-screen flex items-center justify-center">
-        {/* Outlined text - & Photographer (behind) */}
-        <h2 
-          className="absolute font-black z-10 select-none pointer-events-none"
-          style={{
-            fontSize: 'clamp(5rem, 14vw, 16rem)',
-            lineHeight: '0.85',
-            letterSpacing: '-0.04em',
-            WebkitTextStroke: '2px #000000',
-            WebkitTextFillColor: 'transparent',
-            color: 'transparent',
-            whiteSpace: 'nowrap',
-            top: '52%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)'
-          }}
-        >
-          & Photographer
-        </h2>
-
-        {/* Portrait image (middle layer) */}
-        <div 
-          className="absolute z-15 select-none"
-          style={{
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)'
-          }}
-        >
-          <img 
-            src="https://images.unsplash.com/photo-1635349090262-431052479144?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHw0fHxwaG90b2dyYXBoZXIlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NzUzMjAzOTN8MA&ixlib=rb-4.1.0&q=85"
-            alt="Portrait"
-            className="grayscale opacity-95"
+    <section
+      id="home"
+      className="relative min-h-screen bg-white/75 flex flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-28 sm:pt-28 sm:pb-32"
+    >
+      <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto w-full gap-8 sm:gap-10">
+        <div className="flex flex-col items-center gap-3 sm:gap-4">
+          <h1
+            className="font-hero-script font-normal text-gray-900 text-center select-none tracking-wide"
             style={{
-              height: 'clamp(420px, 55vh, 650px)',
-              width: 'auto',
-              objectFit: 'cover',
-              filter: 'contrast(1.1)'
+              fontSize: "clamp(3rem, 11vw, 7.25rem)",
+              lineHeight: 1.05,
             }}
-          />
+          >
+            {name}
+          </h1>
+          <p
+            className="font-semibold text-gray-800 text-center tracking-tight max-w-2xl px-2"
+            style={{
+              fontSize: "clamp(1.05rem, 2.8vw, 1.5rem)",
+              lineHeight: 1.35,
+            }}
+          >
+            {role}
+          </p>
         </div>
 
-        {/* Solid text - Webdesigner (front) */}
-        <h1 
-          className="absolute text-black font-black z-20 select-none pointer-events-none"
-          style={{
-            fontSize: 'clamp(5rem, 14vw, 16rem)',
-            lineHeight: '0.85',
-            letterSpacing: '-0.04em',
-            whiteSpace: 'nowrap',
-            top: '48%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)'
-          }}
-        >
-          Webdesigner
-        </h1>
-      </div>
+        <p className="text-base sm:text-lg text-gray-600 max-w-xl leading-relaxed md:whitespace-normal">
+          {locations}
+        </p>
 
-      {/* Location text bottom left */}
-      <div className="absolute bottom-28 left-8 md:left-16 z-30">
-        <p className="text-base text-gray-700">based in New York, USA.</p>
-      </div>
-
-      {/* Brand logos */}
-      <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 z-30">
-        <div className="flex items-center gap-10 opacity-30">
-          {brands.map((brand, index) => (
-            <span 
-              key={index} 
-              className="text-xs font-semibold tracking-wider text-gray-800"
-            >
-              {brand}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* CTA Buttons */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30">
-        <div className="flex gap-4">
-          <Button 
+        <div className="flex flex-wrap justify-center gap-4 pt-2">
+          <Button
             variant="default"
             className="bg-gray-900 text-white hover:bg-black px-8 py-6 text-sm font-medium rounded-md transition-all duration-300 hover:scale-105"
           >
-            You need a designer
+            {t("hero.ctaProducts")}
           </Button>
-          <Button 
+          <Button
             variant="outline"
             className="border-2 border-gray-900 bg-white text-gray-900 hover:bg-gray-100 px-8 py-6 text-sm font-medium rounded-md transition-all duration-300 hover:scale-105"
           >
-            You need a photographer
+            {t("hero.ctaCollabs")}
+          </Button>
+          <Button
+            variant="outline"
+            asChild
+            className="border-2 border-gray-900 bg-white text-gray-900 hover:bg-gray-100 px-8 py-6 text-sm font-medium rounded-md transition-all duration-300 hover:scale-105"
+          >
+            <a href={SHOPIER_URL} target="_blank" rel="noopener noreferrer">
+              {t("hero.ctaShopier")}
+            </a>
           </Button>
         </div>
       </div>
