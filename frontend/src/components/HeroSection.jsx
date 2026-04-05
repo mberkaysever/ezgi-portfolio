@@ -44,18 +44,30 @@ const HeroSection = () => {
       <div className="relative z-10 flex flex-col items-center text-center max-w-7xl mx-auto w-full gap-8 sm:gap-10">
         <div className="flex flex-col items-center gap-3 sm:gap-4">
           <h1 className="m-0 w-full flex justify-center px-1">
-            <img
-              src="/imza.svg"
-              alt={name}
-              width={1600}
-              height={231}
-              decoding="async"
-              fetchPriority="high"
-              className="block w-auto max-w-full h-auto object-contain object-center mx-auto select-none text-gray-900"
-              style={{
-                height: "clamp(5.25rem, 21vw, 10.125rem)",
-              }}
-            />
+            <span className="hero-logo-row select-none text-gray-900">
+              <span className="hero-logo-row__left">
+                <img
+                  src="/imza.svg"
+                  alt={name}
+                  width={1600}
+                  height={231}
+                  decoding="async"
+                  fetchPriority="high"
+                  draggable={false}
+                />
+              </span>
+              <span className="hero-logo-row__right" aria-hidden="true">
+                <img
+                  src="/imza.svg"
+                  alt=""
+                  width={1600}
+                  height={231}
+                  decoding="async"
+                  fetchPriority="low"
+                  draggable={false}
+                />
+              </span>
+            </span>
           </h1>
           <p
             className="font-semibold text-gray-800 text-center tracking-tight max-w-2xl px-2"

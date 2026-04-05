@@ -35,6 +35,52 @@
     height: 100%;
     will-change: auto;
   }
+
+  .hero-logo-row__right {
+    animation: none;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Hero imza: “Art” dilimi — yavaş mask reveal (--logo-split ile kırpma ince ayarı) */
+.hero-logo-row {
+  --hero-logo-h: clamp(5.25rem, 21vw, 10.125rem);
+  --logo-split: 72;
+  display: flex;
+  align-items: flex-end;
+  height: var(--hero-logo-h);
+  width: min(100%, calc(var(--hero-logo-h) * 1600 / 231));
+  max-width: 100%;
+}
+
+.hero-logo-row__left,
+.hero-logo-row__right {
+  overflow: hidden;
+  flex: 0 0 calc(var(--logo-split) * 1%);
+}
+
+.hero-logo-row__right {
+  flex-basis: calc((100 - var(--logo-split)) * 1%);
+  clip-path: inset(0 100% 0 0);
+  animation: hero-logo-art-reveal 3.05s cubic-bezier(0.45, 0, 0.15, 1) 0.55s forwards;
+}
+
+.hero-logo-row__left img,
+.hero-logo-row__right img {
+  display: block;
+  height: var(--hero-logo-h);
+  width: calc(var(--hero-logo-h) * 1600 / 231);
+  max-width: none;
+}
+
+.hero-logo-row__right img {
+  transform: translateX(calc(var(--logo-split) * -1%));
+}
+
+@keyframes hero-logo-art-reveal {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
 }
   
   #root {

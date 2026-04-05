@@ -9,6 +9,7 @@ import PortfolioSection from "./components/PortfolioSection";
 import ServicesSection from "./components/ServicesSection";
 import ContactSection from "./components/ContactSection";
 import ExhibitionsProductsSections from "./components/ExhibitionsProductsSections";
+import AboutSection from "./components/AboutSection";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -21,6 +22,7 @@ const Home = () => {
       <ServicesSection />
       <PortfolioSection />
       <ExhibitionsProductsSections />
+      <AboutSection />
       <ContactSection />
     </div>
   );

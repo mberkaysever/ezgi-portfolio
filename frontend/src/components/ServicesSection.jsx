@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
-import { Palette, Camera, Layout, Lightbulb } from "lucide-react";
+import { Lightbulb, Palette, Layers, Paintbrush } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
-const ICONS = [Palette, Layout, Camera, Lightbulb];
+const ICONS = [Lightbulb, Palette, Layers, Paintbrush];
 
 const ServicesSection = () => {
   const { t } = useLanguage();
@@ -11,7 +11,7 @@ const ServicesSection = () => {
   const services = useMemo(() => {
     if (!Array.isArray(items)) return [];
     return items.map((item, index) => ({
-      icon: ICONS[index] ?? Palette,
+      icon: ICONS[index] ?? Lightbulb,
       title: item.title,
       description: item.description,
     }));

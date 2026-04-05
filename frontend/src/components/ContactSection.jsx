@@ -1,7 +1,11 @@
 import React from "react";
 import { Button } from "./ui/button";
-import { Mail, Linkedin, Instagram, Twitter } from "lucide-react";
+import { Mail, Linkedin, Instagram, MessageCircle } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+
+const INSTAGRAM_URL = "https://www.instagram.com/ezgiaysever_art/";
+const LINKEDIN_URL = "https://www.linkedin.com/in/ezgi-aysever-94279b83/";
+const WHATSAPP_URL = "https://wa.me/905330865472";
 
 const ContactSection = () => {
   const { t } = useLanguage();
@@ -29,25 +33,31 @@ const ContactSection = () => {
 
         <div className="flex items-center justify-center gap-8 mb-20">
           <a
-            href="#"
-            className="text-gray-400 hover:text-black transition-colors"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="w-6 h-6" />
-          </a>
-          <a
-            href="#"
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-gray-400 hover:text-black transition-colors"
             aria-label="Instagram"
           >
             <Instagram className="w-6 h-6" />
           </a>
           <a
-            href="#"
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-gray-400 hover:text-black transition-colors"
-            aria-label="Twitter"
+            aria-label="LinkedIn"
           >
-            <Twitter className="w-6 h-6" />
+            <Linkedin className="w-6 h-6" />
+          </a>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-black transition-colors"
+            aria-label="WhatsApp"
+          >
+            <MessageCircle className="w-6 h-6" />
           </a>
         </div>
 
