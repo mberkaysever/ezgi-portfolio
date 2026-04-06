@@ -141,38 +141,16 @@
   }
 }
 
-/* Hero: logo SVG şeffaf zemin; sadece vektör yolları; rotateY salınımı */
+/* Hero: logo SVG şeffaf zemin; salınım kapalı */
 .hero-logo-square {
   isolation: isolate;
   background-color: transparent;
-  perspective: 480px;
-  perspective-origin: 50% 50%;
   overflow: visible;
 }
 
 .hero-logo-motion__inner {
-  transform-origin: 50% 50%;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  /* linear: orta konumda ease yüzünden oluşan duraklama olmaz */
-  animation: hero-logo-side-swing 7s linear infinite;
-}
-
-/* +rotateY: sağ kenar öne; -rotateY: sol kenar öne */
-@keyframes hero-logo-side-swing {
-  0%,
-  100% {
-    transform: rotateY(0deg) translateZ(0);
-  }
-  25% {
-    transform: rotateY(24deg) translateZ(0);
-  }
-  50% {
-    transform: rotateY(0deg) translateZ(0);
-  }
-  75% {
-    transform: rotateY(-24deg) translateZ(0);
-  }
+  transform: none;
+  animation: none;
 }
 
 /* Hakkımda: imza — soldan sağa reveal, loop: 3.05s reveal + 2s bekleme, sonra başa dön (toplam 5.05s) */
