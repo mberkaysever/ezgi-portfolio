@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Button } from "./ui/button";
 import { Mail, Menu, X } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
@@ -27,10 +28,15 @@ const Navbar = () => {
 
   const navPad = "pt-[max(1.25rem,env(safe-area-inset-top))] pb-4 sm:pb-6";
   const navX = "px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:px-8";
+  /** body’de portal: #root / isolation / compositor katmanlarının üstünde tam opak panel */
+  const mobileMenuPanelTop =
+    "calc(3.75rem + max(1.25rem, env(safe-area-inset-top, 0px)))";
 
   return (
     <nav
-      className={`fixed left-0 right-0 top-0 z-50 bg-white/80 backdrop-blur-sm ${navPad} ${navX}`}
+      className={`fixed left-0 right-0 top-0 bg-white/80 backdrop-blur-sm ${navPad} ${navX} ${
+        menuOpen ? "z-[100000]" : "z-50"
+      }`}
     >
       <div className="relative z-[60] mx-auto flex max-w-[1800px] items-center justify-between gap-3">
         <a href="#home" className="group flex shrink-0 items-center gap-1" onClick={closeMenu}>
@@ -100,55 +106,65 @@ const Navbar = () => {
         </div>
       </div>
 
-      {menuOpen ? (
-        <div
-          className="fixed inset-0 z-[55] flex flex-col bg-white/98 pt-[calc(3.75rem+max(1.25rem,env(safe-area-inset-top)))] backdrop-blur-md lg:hidden"
-          style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}
-        >
-          <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pb-6 pt-2">
-            {NAV_LINKS.map(({ href, labelKey }) => (
-              <a
-                key={href}
-                href={href}
-                className="rounded-lg px-3 py-3 text-base text-gray-800 active:bg-gray-100"
-                onClick={closeMenu}
-              >
-                {t(labelKey)}
-              </a>
-            ))}
+      {menuOpen && typeof document !== "undefined"
+        ? createPortal(
             <div
-              className="mt-4 flex items-center gap-2 border-t border-gray-200 pt-4"
-              role="group"
-              aria-label={locale === "tr" ? "Dil" : "Language"}
+              className="fixed left-0 right-0 flex flex-col bg-white shadow-[0_12px_40px_-12px_rgba(0,0,0,0.18)] lg:hidden"
+              style={{
+                top: mobileMenuPanelTop,
+                zIndex: 99990,
+                isolation: "isolate",
+              }}
+              role="dialog"
+              aria-modal="true"
+              aria-label={locale === "tr" ? "Menü" : "Menu"}
             >
-              <button
-                type="button"
-                onClick={() => setLocale("tr")}
-                className={`rounded-lg px-4 py-2 text-sm ${
-                  locale === "tr" ? "bg-gray-100 text-black" : "text-gray-500"
-                }`}
-              >
-                TR
-              </button>
-              <button
-                type="button"
-                onClick={() => setLocale("en")}
-                className={`rounded-lg px-4 py-2 text-sm ${
-                  locale === "en" ? "bg-gray-100 text-black" : "text-gray-500"
-                }`}
-              >
-                EN
-              </button>
-            </div>
-            <Button className="mt-4 w-full bg-black text-white hover:bg-gray-800" asChild>
-              <a href={`mailto:${t("nav.contactEmail")}`} onClick={closeMenu}>
-                <Mail className="mr-2 h-4 w-4" aria-hidden />
-                {t("nav.contactEmail")}
-              </a>
-            </Button>
-          </div>
-        </div>
-      ) : null}
+              <div className="flex max-h-[min(85dvh,calc(100dvh-5rem))] flex-col gap-1 overflow-y-auto overscroll-contain px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pb-[max(1.25rem,env(safe-area-inset-bottom,0px))] pt-2">
+                {NAV_LINKS.map(({ href, labelKey }) => (
+                  <a
+                    key={href}
+                    href={href}
+                    className="rounded-lg px-3 py-3 text-base text-gray-800 active:bg-gray-100"
+                    onClick={closeMenu}
+                  >
+                    {t(labelKey)}
+                  </a>
+                ))}
+                <div
+                  className="mt-4 flex items-center gap-2 border-t border-gray-200 pt-4"
+                  role="group"
+                  aria-label={locale === "tr" ? "Dil" : "Language"}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setLocale("tr")}
+                    className={`rounded-lg px-4 py-2 text-sm ${
+                      locale === "tr" ? "bg-gray-100 text-black" : "text-gray-500"
+                    }`}
+                  >
+                    TR
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLocale("en")}
+                    className={`rounded-lg px-4 py-2 text-sm ${
+                      locale === "en" ? "bg-gray-100 text-black" : "text-gray-500"
+                    }`}
+                  >
+                    EN
+                  </button>
+                </div>
+                <Button className="mt-4 w-full bg-black text-white hover:bg-gray-800" asChild>
+                  <a href={`mailto:${t("nav.contactEmail")}`} onClick={closeMenu}>
+                    <Mail className="mr-2 h-4 w-4" aria-hidden />
+                    {t("nav.contactEmail")}
+                  </a>
+                </Button>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
     </nav>
   );
 };

@@ -102,9 +102,18 @@ const ServiceMedia = ({ service, title }) => {
       }
     };
 
+    const tryPlay = () => {
+      v.muted = true;
+      v.setAttribute("muted", "");
+      v.playsInline = true;
+      v.play().catch(() => {});
+    };
+
     applySlow();
     v.addEventListener("loadedmetadata", applySlow);
     v.addEventListener("play", applySlow);
+    v.addEventListener("canplay", tryPlay);
+    v.addEventListener("loadeddata", tryPlay);
 
     if (trimStart > 0) {
       v.addEventListener("loadedmetadata", seekToTrim);
@@ -112,9 +121,23 @@ const ServiceMedia = ({ service, title }) => {
       v.addEventListener("ended", onEndedLoopTrim);
     }
 
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const en of entries) {
+          if (en.isIntersecting) tryPlay();
+        }
+      },
+      { threshold: 0.12, rootMargin: "32px 0px" },
+    );
+    io.observe(v);
+    tryPlay();
+
     return () => {
+      io.disconnect();
       v.removeEventListener("loadedmetadata", applySlow);
       v.removeEventListener("play", applySlow);
+      v.removeEventListener("canplay", tryPlay);
+      v.removeEventListener("loadeddata", tryPlay);
       if (trimStart > 0) {
         v.removeEventListener("loadedmetadata", seekToTrim);
         v.removeEventListener("loadeddata", seekToTrim);
@@ -141,6 +164,7 @@ const ServiceMedia = ({ service, title }) => {
         src={videoUrl}
         muted
         playsInline
+        preload="auto"
         loop={trimStart === 0}
         autoPlay
         aria-label={title}

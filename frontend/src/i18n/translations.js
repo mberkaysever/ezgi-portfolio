@@ -176,6 +176,53 @@ export const translations = {
       title: "What Can We Do Together?",
       subtitle:
         "From concept and corporate identity to design R&D and hands-on studio work—areas we shape in collaboration.",
+      /** Same order and media paths as `tr.services.cards` so ServiceMedia loads video/image in EN */
+      cards: [
+        {
+          title: "Design R&D",
+          description:
+            "Experimental work on material, form, experience, and communication. Research, sketching, and prototyping to make design decisions tangible and testable.",
+          subtitle: "Where tradition meets the modern",
+          description2:
+            "I combine the memory of craft with what contemporary design makes possible. Traditional techniques such as screen printing, linocut, and fabric dyeing are reinterpreted with sustainable materials (silk, linen, cotton) and innovative production—not only to design a product, but to test, develop, and renew the technical heritage of the past with today’s tools and needs.",
+          description3:
+            "Across these stages I focus on bespoke, limited-edition work for individuals and institutions. Each piece carries its own story: far from mass production, carefully made by hand and aligned with your (or your organisation’s) values. I aim to bring the heritage that feeds my practice into a design that is truly yours.",
+          image: "",
+          videoSrc: "/hakkımda.mov",
+        },
+        {
+          title: "Concept development",
+          description:
+            "We unpack the brief together and turn ideas into a clear visual and narrative world. Early support with mood, direction, and the backbone of the project.",
+          description2:
+            "1. Story and visual narrative\n\nShaping the core idea that will reflect a brand, space, or project—defining where the work begins and building a distinct visual language and story. I treat design not only as form but as a living narrative.",
+          description3:
+            "2. Local and cultural grounding\n\nI translate place, craft, and spatial memory into a contemporary design language so the project connects with its geography and culture.\n\n3. Thematic collections\n\nCurated themes—product selections, palettes, and textures—so the project gains a coherent identity.",
+          image: "",
+          videoSrc: "/gelenek-modern.mp4",
+          videoPlaybackRate: 0.5,
+          videoCoverScale: 1.22,
+          videoObjectPosition: "72% 50%",
+          videoTrimStart: 3,
+        },
+        {
+          title: "Corporate identity",
+          description:
+            "For museums, boutique brands, or institutions I design not only a logo or graphics but a living identity. I analyse your values, cultural codes, and goals and translate them into visual language, so each outcome tells your story and leaves a lasting impression.",
+          image: "/kurumsal-kimlik.png",
+        },
+        {
+          title: "Studio practice",
+          subtitle: "Creating together",
+          description:
+            "Production-focused sessions: craft, print, object-making, and exhibition-oriented work—moving from concept to something you can hold, show, or install, together.",
+          description2:
+            "In workshops built around linocut and collage we explore choosing fragments, cutting, layering, and rebuilding a whole—grounding cultural memory and personal traces in texture and form, and pairing technical skill with creative freedom.",
+          description3:
+            "Tailored for individuals, groups, or institutions, these sessions are a space where hands work, minds open, and each participant can create a unique piece. Let’s take a journey together through the layers of memory.",
+          image: "/atolye-calismalari.png",
+        },
+      ],
       items: [
         {
           title: "Concept development",
