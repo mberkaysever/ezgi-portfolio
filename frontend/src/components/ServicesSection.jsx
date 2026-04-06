@@ -60,6 +60,31 @@ const ServicesBackgroundPattern = () => {
 /** Varsayılan ağır çekim (kartta videoPlaybackRate yoksa) */
 const SERVICE_VIDEO_PLAYBACK_RATE = 0.35;
 
+/**
+ * iOS / Android: otomatik play çoğu zaman kullanıcı jesti olmadan reddedilir.
+ * İlk dokunuşta tüm servis videolarında play() yeniden dener (sessiz = politikaya uygun).
+ */
+function useServiceVideoGestureUnlock() {
+  useEffect(() => {
+    const unlock = () => {
+      document.querySelectorAll("video[data-service-autoplay]").forEach((node) => {
+        const v = node;
+        v.muted = true;
+        v.defaultMuted = true;
+        v.volume = 0;
+        v.play().catch(() => {});
+      });
+    };
+    const opts = { capture: true, passive: true, once: true };
+    window.addEventListener("pointerdown", unlock, opts);
+    window.addEventListener("touchstart", unlock, opts);
+    return () => {
+      window.removeEventListener("pointerdown", unlock, opts);
+      window.removeEventListener("touchstart", unlock, opts);
+    };
+  }, []);
+}
+
 const ServiceMedia = ({ service, title }) => {
   const videoRef = useRef(null);
   const videoUrl = service.videoSrc ? `${publicUrl}${service.videoSrc}` : null;
@@ -104,7 +129,11 @@ const ServiceMedia = ({ service, title }) => {
 
     const tryPlay = () => {
       v.muted = true;
+      v.defaultMuted = true;
+      v.volume = 0;
       v.setAttribute("muted", "");
+      v.setAttribute("playsinline", "");
+      v.setAttribute("webkit-playsinline", "");
       v.playsInline = true;
       v.play().catch(() => {});
     };
@@ -149,7 +178,14 @@ const ServiceMedia = ({ service, title }) => {
   if (videoUrl) {
     const video = (
       <video
-        ref={videoRef}
+        ref={(node) => {
+          videoRef.current = node;
+          if (node) {
+            node.setAttribute("playsinline", "");
+            node.setAttribute("webkit-playsinline", "");
+            node.defaultMuted = true;
+          }
+        }}
         className={
           coverScale
             ? "absolute left-1/2 top-1/2 min-h-full min-w-full object-cover"
@@ -162,7 +198,9 @@ const ServiceMedia = ({ service, title }) => {
           ...(objectPosition ? { objectPosition } : {}),
         }}
         src={videoUrl}
+        data-service-autoplay=""
         muted
+        defaultMuted
         playsInline
         preload="auto"
         loop={trimStart === 0}
@@ -197,6 +235,7 @@ const ServiceMedia = ({ service, title }) => {
 };
 
 const ServicesSection = () => {
+  useServiceVideoGestureUnlock();
   const { t } = useLanguage();
   const cards = t("services.cards");
   const items = t("services.items");
