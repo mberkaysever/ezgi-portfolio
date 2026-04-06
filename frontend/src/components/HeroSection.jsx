@@ -37,9 +37,9 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white/75 px-4 pb-28 pt-24 sm:pb-32 sm:pt-28"
+      className="relative flex min-h-[100dvh] min-h-screen flex-col items-center justify-center overflow-hidden bg-white/75 px-4 pb-28 pt-[max(6rem,calc(4.75rem+env(safe-area-inset-top,0px)))] sm:pb-32 sm:pt-28"
     >
-      <div className="relative z-[1] flex w-full max-w-[42rem] flex-col items-center gap-8 px-[2cm] text-center sm:gap-10">
+      <div className="relative z-[1] flex w-full max-w-[42rem] flex-col items-center gap-8 px-3 text-center sm:gap-10 sm:px-6 md:px-8">
         <div className="flex w-full max-w-lg flex-col items-center gap-4 px-2 sm:gap-5">
           <div className="flex w-full justify-center">
             <div className="hero-logo-square flex aspect-square w-full max-w-[min(100%,23.4rem)] items-center justify-center rounded-none sm:max-w-[26rem]">
@@ -69,25 +69,25 @@ const HeroSection = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 pt-2">
+        <div className="flex w-full max-w-md flex-col items-stretch gap-3 pt-2 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
           <Button
             variant="default"
             asChild
-            className="bg-gray-900 text-white hover:bg-black px-8 py-6 text-sm font-medium rounded-md transition-all duration-300 hover:scale-105"
+            className="w-full bg-gray-900 px-8 py-6 text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-black sm:w-auto"
           >
             <a href="#portfolio">{t("hero.ctaProducts")}</a>
           </Button>
           <Button
             variant="outline"
             asChild
-            className="border-2 border-gray-900 bg-white text-gray-900 hover:bg-gray-100 px-8 py-6 text-sm font-medium rounded-md transition-all duration-300 hover:scale-105"
+            className="w-full border-2 border-gray-900 bg-white px-8 py-6 text-sm font-medium text-gray-900 transition-all duration-300 hover:scale-105 hover:bg-gray-100 sm:w-auto"
           >
             <a href="#contact">{t("hero.ctaCollabs")}</a>
           </Button>
           <Button
             variant="outline"
             asChild
-            className="border-2 border-gray-900 bg-white text-gray-900 hover:bg-gray-100 px-8 py-6 text-sm font-medium rounded-md transition-all duration-300 hover:scale-105"
+            className="w-full border-2 border-gray-900 bg-white px-8 py-6 text-sm font-medium text-gray-900 transition-all duration-300 hover:scale-105 hover:bg-gray-100 sm:w-auto"
           >
             <a href={SHOPIER_URL} target="_blank" rel="noopener noreferrer">
               {t("hero.ctaShopier")}

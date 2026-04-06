@@ -13,25 +13,30 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="min-h-screen bg-white/75 flex items-center justify-center px-12 py-32 scroll-mt-24"
+      className="flex min-h-[100dvh] min-h-screen scroll-mt-24 items-center justify-center bg-white/75 px-4 py-24 pb-[max(6rem,env(safe-area-inset-bottom,0px)+4rem)] pt-20 sm:px-8 sm:py-32 md:px-12"
     >
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-7xl md:text-8xl font-medium tracking-tight mb-12 leading-tight">
+      <div className="mx-auto max-w-4xl text-center">
+        <h2 className="mb-8 text-4xl font-medium leading-tight tracking-tight sm:mb-10 sm:text-5xl md:mb-12 md:text-7xl lg:text-8xl">
           {t("contact.titleLine1")}
           <br />
           {t("contact.titleLine2")}
         </h2>
 
-        <p className="text-2xl text-gray-600 mb-16 leading-relaxed">
+        <p className="mb-10 text-lg leading-relaxed text-gray-600 sm:mb-14 sm:text-xl md:mb-16 md:text-2xl">
           {t("contact.body")}
         </p>
 
-        <Button className="bg-black text-white hover:bg-gray-800 px-12 py-8 text-xl rounded-md mb-16">
-          <Mail className="w-6 h-6 mr-3" aria-hidden />
-          {t("contact.cta")}
+        <Button
+          className="mb-12 w-full max-w-md bg-black px-8 py-6 text-base text-white hover:bg-gray-800 sm:mb-16 sm:w-auto sm:px-12 sm:py-8 sm:text-xl"
+          asChild
+        >
+          <a href={`mailto:${t("nav.contactEmail")}`}>
+            <Mail className="mr-3 h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
+            {t("contact.cta")}
+          </a>
         </Button>
 
-        <div className="flex items-center justify-center gap-8 mb-20">
+        <div className="mb-16 flex items-center justify-center gap-6 sm:mb-20 sm:gap-8">
           <a
             href={INSTAGRAM_URL}
             target="_blank"

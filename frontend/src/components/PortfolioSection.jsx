@@ -100,19 +100,24 @@ const PortfolioSection = () => {
   }
 
   return (
-    <section id="portfolio" className="scroll-mt-24 bg-white/75 px-6 py-24 sm:px-12 sm:py-32">
+    <section
+      id="portfolio"
+      className="scroll-mt-24 bg-white/75 px-4 py-20 sm:px-6 sm:py-24 md:px-12 md:py-32"
+    >
       <div className="mx-auto w-full max-w-[min(100%,88rem)]">
-        <header className="mb-16 md:mb-24">
-          <h2 className="mb-4 text-5xl font-medium tracking-tight sm:text-6xl">{t("portfolio.title")}</h2>
-          <p className="max-w-2xl text-xl text-gray-600">{t("portfolio.subtitle")}</p>
+        <header className="mb-10 sm:mb-16 md:mb-24">
+          <h2 className="mb-3 text-4xl font-medium tracking-tight sm:mb-4 sm:text-5xl md:text-6xl">
+            {t("portfolio.title")}
+          </h2>
+          <p className="max-w-2xl text-base text-gray-600 sm:text-lg md:text-xl">{t("portfolio.subtitle")}</p>
         </header>
 
         {list.length === 0 ? (
           <p className="text-gray-500">{locale === "tr" ? "Henüz proje yok." : "No projects yet."}</p>
         ) : (
-          <div className="flex w-full justify-start overflow-x-auto pb-2 sm:overflow-visible">
+          <div className="flex w-full touch-pan-x justify-start overflow-x-auto overscroll-x-contain pb-3 [-webkit-overflow-scrolling:touch] sm:overflow-visible sm:pb-2">
             <div
-              className="portfolio-editorial-chain relative ml-0 shrink-0 [--tile:max(27rem,min(85vh,min(84vw,84rem)))]"
+              className="portfolio-editorial-chain relative ml-0 shrink-0 [--tile:max(27rem,min(85vh,min(84vw,84rem)))] max-sm:[--tile:min(17.5rem,min(58dvh,min(88vw,20rem)))]"
               style={{
                 width: "max(calc(2 * var(--tile)), calc(var(--tile) + min(54rem, min(58vw, 63rem))))",
                 minHeight: `calc(${list.length} * var(--tile))`,
@@ -134,6 +139,7 @@ const PortfolioSection = () => {
                     }}
                     onMouseEnter={() => revealColor(project.id)}
                     onFocus={() => revealColor(project.id)}
+                    onClick={() => revealColor(project.id)}
                     tabIndex={0}
                   >
                     <img
@@ -158,24 +164,24 @@ const PortfolioSection = () => {
                 const placement = i % 2 === 0 ? "after" : "before";
                 const top = `calc((${i} + 0.5) * var(--tile))`;
                 const widthAfter =
-                  "min(54rem, max(12rem, calc(100vw - var(--tile) - 7rem)))";
+                  "min(54rem, max(11rem, calc(100dvw - var(--tile) - max(1.25rem, env(safe-area-inset-right, 0px)) - max(1.25rem, env(safe-area-inset-left, 0px)))))";
                 const widthBefore =
-                  "min(54rem, max(12rem, calc(var(--tile) - 0.75rem)))";
+                  "min(54rem, max(11rem, calc(var(--tile) - 0.5rem)))";
                 return (
                   <div
                     key={`editorial-${project.id}`}
-                    className="group portfolio-editorial-text absolute z-[3] box-border flex max-h-[min(85vh,48rem)] -translate-y-1/2 flex-col gap-3 overflow-y-auto overflow-x-hidden rounded-sm border border-gray-200/40 bg-white/95 p-5 text-left shadow-sm backdrop-blur-sm sm:gap-4 sm:p-6"
+                    className="group portfolio-editorial-text absolute z-[3] box-border flex max-h-[min(72dvh,40rem)] -translate-y-1/2 flex-col gap-2 overflow-y-auto overflow-x-hidden rounded-sm border border-gray-200/40 bg-white/95 p-4 text-left shadow-sm backdrop-blur-sm sm:max-h-[min(85vh,48rem)] sm:gap-4 sm:p-6"
                     style={{
                       left: placement === "after" ? "var(--tile)" : "0",
                       top,
                       width: placement === "after" ? widthAfter : widthBefore,
                     }}
                   >
-                    <h3 className="text-2xl font-medium leading-snug tracking-tight text-gray-900 sm:text-3xl">
+                    <h3 className="text-lg font-medium leading-snug tracking-tight text-gray-900 sm:text-2xl md:text-3xl">
                       {title}
                     </h3>
                     {description ? (
-                      <p className="text-base leading-relaxed whitespace-pre-line text-gray-700">
+                      <p className="text-sm leading-relaxed text-gray-700 whitespace-pre-line sm:text-base">
                         {description}
                       </p>
                     ) : (
