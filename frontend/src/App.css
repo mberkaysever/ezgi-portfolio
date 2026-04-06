@@ -141,10 +141,10 @@
   }
 }
 
-/* Hero: zemin portföy ile aynı; beyaz kare sabit, logo rotateY ile sağ öne → nötr → sol öne → nötr (loop) */
+/* Hero: logo SVG şeffaf zemin; sadece vektör yolları; rotateY salınımı */
 .hero-logo-square {
   isolation: isolate;
-  background-color: #ffffff !important;
+  background-color: transparent;
   perspective: 480px;
   perspective-origin: 50% 50%;
   overflow: visible;
