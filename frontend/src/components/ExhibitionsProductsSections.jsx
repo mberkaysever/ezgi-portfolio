@@ -10,7 +10,7 @@ export default function ExhibitionsProductsSections() {
         className="py-32 px-12 bg-white/75 text-black scroll-mt-24"
       >
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-6xl font-black mb-4">{t("exhibitions.title")}</h2>
+          <h2 className="text-6xl font-medium mb-4 tracking-tight">{t("exhibitions.title")}</h2>
           {t("exhibitions.subtitle") ? (
             <p className="text-xl text-gray-600">{t("exhibitions.subtitle")}</p>
           ) : null}
@@ -21,7 +21,7 @@ export default function ExhibitionsProductsSections() {
         className="py-32 px-12 bg-white/75 text-black scroll-mt-24"
       >
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-6xl font-black mb-4">{t("products.title")}</h2>
+          <h2 className="text-6xl font-medium mb-4 tracking-tight">{t("products.title")}</h2>
           {t("products.subtitle") ? (
             <p className="text-xl text-gray-600">{t("products.subtitle")}</p>
           ) : null}

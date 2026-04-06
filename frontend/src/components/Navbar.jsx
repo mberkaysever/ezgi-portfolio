@@ -6,7 +6,6 @@ import { useLanguage } from "../context/LanguageContext";
 const NAV_LINKS = [
   { href: "#design", labelKey: "nav.linkTogether" },
   { href: "#portfolio", labelKey: "nav.linkPortfolio" },
-  { href: "#products", labelKey: "nav.linkProducts" },
   { href: "#about", labelKey: "nav.linkAbout" },
   { href: "#contact", labelKey: "nav.linkContact" },
 ];
@@ -18,7 +17,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-6 bg-white/80 backdrop-blur-sm">
       <div className="flex flex-wrap items-center justify-between gap-y-4 max-w-[1800px] mx-auto">
         <a href="#home" className="flex items-center gap-1 group shrink-0">
-          <span className="text-2xl font-black tracking-tight text-black group-hover:text-gray-700 transition-colors">
+          <span className="text-2xl font-medium tracking-tight text-black group-hover:text-gray-700 transition-colors">
             {t("nav.brand")}
           </span>
           <span className="w-2 h-2 bg-pink-500 rounded-full" aria-hidden />
@@ -29,7 +28,7 @@ const Navbar = () => {
             <a
               key={href}
               href={href}
-              className="text-sm text-gray-700 hover:text-black transition-colors font-medium whitespace-nowrap"
+              className="text-sm text-gray-700 hover:text-black transition-colors font-normal whitespace-nowrap"
             >
               {t(labelKey)}
             </a>
@@ -42,7 +41,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setLocale("tr")}
-              className={`px-2 py-1 rounded font-medium transition-colors ${
+              className={`px-2 py-1 rounded font-normal transition-colors ${
                 locale === "tr"
                   ? "text-black bg-gray-100"
                   : "text-gray-400 hover:text-gray-700"
@@ -56,7 +55,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setLocale("en")}
-              className={`px-2 py-1 rounded font-medium transition-colors ${
+              className={`px-2 py-1 rounded font-normal transition-colors ${
                 locale === "en"
                   ? "text-black bg-gray-100"
                   : "text-gray-400 hover:text-gray-700"

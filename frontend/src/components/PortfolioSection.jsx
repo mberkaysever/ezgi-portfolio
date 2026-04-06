@@ -62,6 +62,7 @@ const PortfolioSection = () => {
       title: p.title,
       category: p.category,
       year: p.year,
+      description: p.description,
       image: FALLBACK_IMAGES[i] ?? FALLBACK_IMAGES[0],
     }));
   }, [remoteRows, staticProjects, locale]);
@@ -70,7 +71,7 @@ const PortfolioSection = () => {
     return (
       <section id="portfolio" className="py-32 px-12 bg-white/75 scroll-mt-24">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-6xl font-black mb-4">{t("portfolio.title")}</h2>
+          <h2 className="text-6xl font-medium mb-4 tracking-tight">{t("portfolio.title")}</h2>
           <p className="text-xl text-gray-600">{t("portfolio.subtitle")}</p>
           <p className="mt-16 text-gray-500 text-sm">Yükleniyor…</p>
         </div>
@@ -82,7 +83,7 @@ const PortfolioSection = () => {
     <section id="portfolio" className="py-32 px-12 bg-white/75 scroll-mt-24">
       <div className="max-w-7xl mx-auto">
         <div className="mb-20">
-          <h2 className="text-6xl font-black mb-4">{t("portfolio.title")}</h2>
+          <h2 className="text-6xl font-medium mb-4 tracking-tight">{t("portfolio.title")}</h2>
           <p className="text-xl text-gray-600">{t("portfolio.subtitle")}</p>
         </div>
 
@@ -97,14 +98,20 @@ const PortfolioSection = () => {
                 />
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
               </div>
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-2xl font-bold mb-1 group-hover:translate-x-2 transition-transform duration-300">
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <h3 className="text-2xl font-medium mb-1 group-hover:translate-x-2 transition-transform duration-300">
                     {project.title}
                   </h3>
-                  <p className="text-gray-500">
-                    {project.category} • {project.year}
-                  </p>
+                  {project.description ? (
+                    <p className="mt-2 text-base text-gray-600 leading-relaxed whitespace-pre-line">
+                      {project.description}
+                    </p>
+                  ) : (
+                    <p className="text-gray-500">
+                      {project.category} • {project.year}
+                    </p>
+                  )}
                 </div>
                 <ArrowUpRight className="w-6 h-6 text-gray-400 group-hover:text-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 shrink-0" />
               </div>

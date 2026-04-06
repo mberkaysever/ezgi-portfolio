@@ -35,6 +35,8 @@ export default function BackgroundArt() {
 
   return (
     <div className="background-art" aria-hidden="true">
+      <div className="background-art__layer background-art__layer--gradient" />
+      <div className="background-art__layer background-art__layer--grain" />
       <div ref={motionRef} className="background-art__motion">
         <img
           src={imgSrc}
@@ -51,6 +53,7 @@ export default function BackgroundArt() {
           }}
         />
       </div>
+      <div className="background-art__layer background-art__layer--blobs" />
     </div>
   );
 }

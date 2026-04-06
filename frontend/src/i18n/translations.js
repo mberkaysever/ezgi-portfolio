@@ -13,9 +13,8 @@ export const translations = {
       contactEmail: "ezgiaysever@gmail.com",
     },
     hero: {
-      name: "Ezgi Aysever",
+      name: "Ezgi Aysever Korkmaz",
       role: "Multidisipliner Sanatçı ve Tasarımcı",
-      locations: "Antakya, Ürgüp, İstanbul",
       ctaProducts: "Ürünler",
       ctaCollabs: "İşbirlikleri",
       ctaShopier: "Shopier",
@@ -33,61 +32,83 @@ export const translations = {
       subtitle: "Son projelerden bir seçki",
       projects: [
         {
-          title: "Marka kimliği yenilemesi",
-          category: "Tasarım",
-          year: "2024",
+          title: "MİRAS",
+          description:
+            "Köklerimin fısıltısı, ailemin hikâyeleri ve çocukluğumun hiç bitmeyen devinimi... Miras, kendi özgün çizgilerimle kişisel belleğimi yeniden inşa ettiğim bir alan. Geçmişin parçalarını bugünün yüzeylerinde bir araya getirirken, o bitmemişlik hissini her desende yeniden yaşatıyorum.",
         },
         {
-          title: "Editoryal fotoğrafçılık",
-          category: "Fotoğrafçılık",
-          year: "2024",
+          title: "LORİS'İN BAHÇESİ",
+          description:
+            "Zeytin dallarının sabrı, narların bereketi ve Akdeniz'in kadim bitkileri... Loris'in Bahçesi, doğanın içindeki o kusursuzluğa bir övgü. Topraktan süzülen kültürel mirası, geleneksel baskı teknikleriyle kumaşlara ve kağıtlara nakşettiğim, bitkisel formların hafızada yer bulduğu bir 'bahçe'.",
         },
         {
-          title: "E-ticaret platformu",
-          category: "Tasarım",
-          year: "2023",
+          title: "ANTAKYA HAFIZAMDA",
+          description:
+            "Bir şehri yanınızda taşıyabilir misiniz? Antakya Hafızamda, taşınmaz sanılanın ruhunu, çizgilerin gücüyle başka şehirlere, başka evlere taşıma çabası. Eski bir avlunun huzurunu, bir mimari detayın hafızasını, onu hiç tanımayanlara anlatma biçimim. Belleğin sabit kalmayıp, dolaşım hâlinde olduğunun görsel bir kanıtı.",
         },
         {
-          title: "Ürün fotoğrafçılığı",
-          category: "Fotoğrafçılık",
-          year: "2023",
+          title: "KONSEPT",
+          description:
+            "Çalışmalarımı yaparken yaşamımla nasıl bir ilişki kuruyorum? Mekânsal hafıza, başka bir şehirde nasıl yeniden kurulur? Antakya'yı hiç tanımayan birine, o eski evin avlusundaki ikindi güneşini nasıl anlatabilirim? Kültürel hafıza sabit midir, yoksa bir şehirden diğerine bizimle birlikte dolaşımda mıdır?\n\nTüm üretimlerim bu soruların izini sürüyor. Çocukluğumdan, ailemden, Antakya'dan süzülen; bütün devinimi ve bitmemişliği ile bana miras kalan o çizgileri, farklı disiplinlerde yaşamın içine sızan hikâyelere dönüştürüyorum. İşte o hikâyelerden bazı kesitler:",
         },
       ],
     },
     services: {
       title: "Birlikte Neler Yapabiliriz?",
-      subtitle:
-        "Konseptten kurumsal kimliğe, tasarım ar-ge’den atölye üretimine kadar birlikte şekillendirdiğimiz alanlar.",
-      items: [
+      subtitle: "",
+      cards: [
+        {
+          title: "Tasarım & Ar-Ge",
+          description:
+            "Fikirleri formla buluştururken, her projenin kendi hikâyesini yazıyorum.",
+          subtitle: "Gelenekle Modernin Buluşması",
+          description2:
+            "Zanaatın hafızasını modern tasarımın imkânlarıyla birleştiriyorum. Serigrafi, linol baskı ve kumaş boyama gibi geleneksel teknikleri; sürdürülebilir malzemeler (ipek, keten, pamuk) ve yenilikçi üretim süreçleriyle yeniden yorumluyorum. Bu süreç, sadece bir ürün tasarlamak değil; geçmişin teknik mirasını bugünün teknolojisi ve ihtiyaçlarıyla denemek, geliştirmek ve yeniden üretmektir.",
+          description3:
+            "Tüm bu üretim aşamalarında, kişilere ve kurumlara özel, sınırlı adetli ve tamamen özgün projelere odaklanıyorum. Her bir parçanın kendi hikâyesini taşıdığı bu özel üretimler; seri üretimin ruhsuzluğundan uzak, el emeğiyle dokunmuş, titizlikle işlenmiş ve sizin (veya kurumunuzun) değerleriyle harmanlanmış biricik sonuçlar sunuyor. Köklerimden beslenen mirası, sadece size özel bir tasarımda yeniden yaşatmayı amaçlıyorum.",
+          image: "",
+          videoSrc: "/hakkımda.mov",
+        },
         {
           title: "Konsept Geliştirme",
           description:
-            "Brief’i birlikte çözümlüyor, fikri net bir görsel ve anlatı dünyasına taşıyoruz. Moodboard, yön tayini ve proje omurgası için erken aşamada yanınızdayım.",
+            "Bir fikrin hikâyeye, hikâyenin tasarıma dönüşme süreci.\n\n\"Tasarım süreci benim için sadece bir ürün ortaya koymak değil; o ürünün arkasındaki kültürel belleği, sanatsal derinliği ve stratejik kurguyu inşa etmektir. Konsept geliştirme aşamasında, projelerinize özgün bir ruh ve sürdürülebilir bir hikâye kazandırıyorum.\"",
+          description2:
+            "1. Hikâye Tasarımı ve Görsel Anlatı (Storytelling)\n\nBir markanın, mekânın veya projenin ruhunu yansıtacak ana fikrin oluşturulması.\n\nProjenin çıkış noktasını belirleyerek, ona özgü bir görsel dil ve anlatı kurguluyorum. Tasarımı sadece bir form değil, yaşayan bir hikâye olarak ele alıyorum.",
+          description3:
+            "2. Projenin yerel ve kültürel bağlarını kurmak\n\nYerel değerleri, geleneksel zanaatları ve mekânsal hafızayı modern tasarım diline tercüme ediyorum. Projenin bulunduğu coğrafya ve kültürle bağ kurmasını sağlıyorum.\n\n3. Tematik Koleksiyon Kurgusu\n\nBir markanın veya kurumun ihtiyacına yönelik özel \"tema\" çalışmaları.\n\nBelirli bir tema etrafında şekillenen ürün seçkileri, renk paletleri ve doku kurguları hazırlayarak projenin bütünsel bir kimliğe bürünmesini sağlıyorum.",
+          image: "",
+          videoSrc: "/gelenek-modern.mp4",
+          videoPlaybackRate: 0.5,
+          videoCoverScale: 1.22,
+          videoObjectPosition: "72% 50%",
+          videoTrimStart: 3,
         },
         {
           title: "Kurumsal Kimlik",
           description:
-            "Logo, tipografi, renk paleti ve uygulama ilkeleriyle markanızın sesini tutarlı, hatırlanır bir kimliğe dönüştürüyor; dijital ve basılı temas noktalarında aynı dili konuşmanızı sağlıyorum.",
+            "Müzeler, butik markalar veya kurumlar için; sadece logo veya grafik değil, 'yaşayan' bir kimlik tasarlıyorum. Markanızın değerlerini, kültürel kodlarını ve hedeflerini analiz ederek, onları görsel dile tercüme ediyorum. Ortaya çıkan her çalışma, markanızın kendine has hikâyesini anlatan, iz bırakan ve kalıcı bir değer taşıyan bir bütüne dönüşüyor.",
+          image: "/kurumsal-kimlik.png",
         },
         {
-          title: "Tasarım Ar-Ge",
+          title: "Atölye Çalışmaları",
+          subtitle: "Birlikte Üretmek",
           description:
-            "Malzeme, form, deneyim ve iletişim üzerine deneysel çalışmalar. Yeni ürün veya kampanya fikirleri için araştırma, eskiz ve prototipleme ile tasarımı test edilebilir hale getiriyorum.",
-        },
-        {
-          title: "Atolye Çalışmaları",
-          description:
-            "Üretim odaklı oturumlar: el işçiliği, baskı, obje ve sergi pratikleriyle kavramı somut üretime bağlıyor; birlikte deneyerek ilerliyoruz.",
+            "Sanatsal üretimi sadece kişisel bir yolculuk olarak değil, kolektif bir deneyim ve öğrenme süreci olarak görüyorum. Atölyelerimde; geleneksel zanaat tekniklerini, yaratıcı düşünceyle birleştirerek katılımcıların kendi hikâyelerini keşfetmelerine alan açıyorum.",
+          description2:
+            "Özellikle Linol Baskı ve Kolaj teknikleri üzerine kurguladığım atölyelerde; parçaları seçmeyi, kesmeyi, katmanlandırmayı ve yeniden bir bütün oluşturmayı deneyimliyoruz. Kültürel belleği ve kişisel izleri, doku ve form aracılığıyla somutlaştırdığımız bu süreçlerde; teknik bilgiyi sanatsal özgürlükle harmanlıyoruz.",
+          description3:
+            "Bireysel katılımcılara, gruplara veya kurumlara özel olarak tasarlanan bu çalışmalar; ellerin işlediği, zihnin özgürleştiği ve sonunda her katılımcının kendi 'biricik' parçasını yarattığı bir üretim alanı sunuyor. Gelin, belleğin katmanlarında birlikte bir yolculuğa çıkalım.",
+          image: "/atolye-calismalari.png",
         },
       ],
+      sections: [],
+      items: [],
     },
     about: {
       title: "Hakkımda",
       paragraphs: [
-        "Ezgi Aysever, Hatay doğumlu bir sanatçı ve akademisyendir. Lisans eğitimini Mustafa Kemal Üniversitesi Güzel Sanatlar Eğitimi Resim-İş Öğretmenliği bölümünde tamamlamıştır. Sanat eğitimine farklı disiplinlerle devam eden Aysever, Mimar Sinan Güzel Sanatlar Üniversitesi’nde Temel Sanat Eğitimi alanında lisansüstü çalışmalar yapmış, ardından Mustafa Kemal Üniversitesi’nde sanat ve tasarım alanında yüksek lisansını tamamlamıştır. Hâlen Mimar Sinan Güzel Sanatlar Üniversitesi’nde Temel Sanat Eğitimi Anasanat Dalı’nda sanatta yeterlilik (doktora) çalışmalarını sürdürmektedir.",
-        "Sanat pratiğinde disiplinlerarası bir yaklaşım benimseyen Aysever, grafik tasarım, ürün tasarımı ve çağdaş sanat üretimleri arasında geçişken bir dil kurar. Hatay Arkeoloji Müzesi için geliştirdiği hediyelik eşya ve tasarım projeleri, kültürel miras ile çağdaş tasarım arasında kurduğu bağı görünür kılar. Bu çalışmalarını akademik metinlere de taşıyarak yayın ve bildirilerle desteklemiştir.",
-        "Profesyonel hayatında grafik tasarım, kurumsal kimlik ve görsel iletişim alanlarında çeşitli kurum ve projelerde görev almıştır. Aynı zamanda eğitim alanında da aktif olarak çalışmış, farklı kurumlarda eğitmenlik yapmıştır. Güncel olarak Kapadokya Üniversitesi’nde öğretim görevlisi olarak akademik faaliyetlerini sürdürmektedir.",
-        "Sanatçı, kişisel ve karma sergilerde yer alarak üretimlerini ulusal ve uluslararası platformlarda paylaşmaktadır. Çalışmaları, kimlik, hafıza, mekân ve kültürel süreklilik gibi kavramlar etrafında şekillenir. Ezgi Aysever, akademik bilgi ile sanatsal üretimi bir araya getiren yaklaşımıyla çağdaş sanat alanında üretimlerine devam etmektedir.",
+        "Merhaba, ben Ezgi. Benim için üretim, parçaları bir araya getirerek bir bütün oluşturma biçimi. Bu bütünün nasıl oluştuğunu, hangi izlerden beslendiğini ve nasıl dönüştüğünü anlatıyorum; buna hikaye diyorum. Sanat, tasarım ve akademi ise bu hikayenin farklı katmanları. Üretimlerim, belleğin katmanlarında dolaşan bir araştırma alanı. Kültürel belleği yalnızca bir hatırlama eylemi olarak değil, aynı zamanda sürekli yeniden kurulan bir süreç olarak ele alıyorum. Çocukluğumdan, ailemden ve Antakya’dan süzülen; bitmemişliği ve devinimiyle varlığını sürdüren izler, çalışmalarımın çıkış noktasını oluşturuyor. Kişisel ve kolektif belleğin kesişiminde şekillenen bu izler, yüzeylerde tekrar yoluyla görünür hale geliyor. Tekrar, benim için yalnızca biçimsel bir düzen değil; hatırlamanın sürekliliğini taşıyan bir eylem. Farklı medyumlarla geliştirdiğim üretimlerim gündelik olanın içinde sessizce var olan bir hatırlama biçimini önerir. Güzel Sanatlar eğitimiyle başlayan yolculuğum; Moda Tasarımı ve Sanatta Yeterlik çalışmalarıyla derinleşerek bugün Hatay, Ürgüp ve İstanbul üçgeninde devam ediyor. Serigrafi, linol baskı ve kumaş boyama gibi tekniklerle çalışırken, geçmişin birikimini çağdaş ve sürdürülebilir bir dile dönüştürüyorum. Amacım, sadece bir tasarım sunmak değil; arkasında derin bir hikayesi olan, kültürel bir iz bırakabilen işler üretmek. Sizin için neler mi yapabilirim? Gelin, hikayenizi birlikte tasarlayalım.",
       ],
     },
     contact: {
@@ -111,9 +132,8 @@ export const translations = {
       contactEmail: "ezgiaysever@gmail.com",
     },
     hero: {
-      name: "Ezgi Aysever",
+      name: "Ezgi Aysever Korkmaz",
       role: "Multidisciplinary Artist and Designer",
-      locations: "Antakya, Ürgüp, Istanbul",
       ctaProducts: "Products",
       ctaCollabs: "Collaborations",
       ctaShopier: "Shopier",
@@ -131,24 +151,24 @@ export const translations = {
       subtitle: "A collection of recent projects",
       projects: [
         {
-          title: "Brand identity redesign",
-          category: "Design",
-          year: "2024",
+          title: "HERITAGE",
+          description:
+            "The whisper of my roots, my family's stories, and the ceaseless motion of my childhood... Heritage is where I rebuild my personal memory with my own unmistakable lines. As I bring fragments of the past together on today's surfaces, I revive that sense of incompleteness in every pattern.",
         },
         {
-          title: "Editorial photography",
-          category: "Photography",
-          year: "2024",
+          title: "LORIS'S GARDEN",
+          description:
+            "The patience of olive branches, the abundance of pomegranates, and the ancient plants of the Mediterranean... Loris's Garden is a tribute to that perfection within nature. A 'garden' where I inscribe onto fabric and paper, with traditional print techniques, the cultural heritage rising from the soil—where botanical forms find a place in memory.",
         },
         {
-          title: "E-commerce platform",
-          category: "Design",
-          year: "2023",
+          title: "ANTAKYA IN MY MEMORY",
+          description:
+            "Can you carry a city with you? Antakya in My Memory is an effort to carry the spirit of what seems immovable to other cities and homes, through the power of line. My way of telling the peace of an old courtyard, the memory of an architectural detail, to those who have never known it. A visual proof that memory does not stay fixed but remains in motion.",
         },
         {
-          title: "Product photography",
-          category: "Photography",
-          year: "2023",
+          title: "CONCEPT",
+          description:
+            "When I work, how do I relate to my life? How is spatial memory rebuilt in another city? How can I describe to someone who has never known Antakya the afternoon sun in the courtyard of that old house? Is cultural memory fixed, or does it travel with us from city to city?\n\nAll my work follows these questions. I transform the lines inherited from my childhood, my family, and Antakya—with all their motion and incompleteness—into stories that seep into life across disciplines. Here are some glimpses from those stories:",
         },
       ],
     },

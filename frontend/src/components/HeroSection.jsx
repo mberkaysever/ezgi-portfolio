@@ -33,69 +33,59 @@ const HeroSection = () => {
 
   const name = pick(heroRow?.name_tr, heroRow?.name_en) || t("hero.name");
   const role = pick(heroRow?.role_tr, heroRow?.role_en) || t("hero.role");
-  const locations =
-    pick(heroRow?.locations_tr, heroRow?.locations_en) || t("hero.locations");
 
   return (
     <section
       id="home"
-      className="relative min-h-screen bg-white/75 flex flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-28 sm:pt-28 sm:pb-32"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white/75 px-4 pt-24 pb-28 sm:pt-28 sm:pb-32"
     >
-      <div className="relative z-10 flex flex-col items-center text-center max-w-7xl mx-auto w-full gap-8 sm:gap-10">
-        <div className="flex flex-col items-center gap-3 sm:gap-4">
-          <h1 className="m-0 w-full flex justify-center px-1">
-            <span className="hero-logo-row select-none text-gray-900">
-              <span className="hero-logo-row__left">
-                <img
-                  src="/imza.svg"
-                  alt={name}
-                  width={1600}
-                  height={231}
-                  decoding="async"
-                  fetchPriority="high"
-                  draggable={false}
-                />
-              </span>
-              <span className="hero-logo-row__right" aria-hidden="true">
-                <img
-                  src="/imza.svg"
-                  alt=""
-                  width={1600}
-                  height={231}
-                  decoding="async"
-                  fetchPriority="low"
-                  draggable={false}
-                />
-              </span>
-            </span>
+      {/* Orta sütun: çok açık gri + hafif derinlik (gölge / ring / üst highlight); içerikle aynı ölçüler */}
+      <div
+        className="hero-panel-bg pointer-events-none absolute inset-y-0 left-1/2 z-[1] -translate-x-1/2 box-border w-[min(100%,calc(100vw-2rem))] max-w-[42rem] px-[2cm]"
+        aria-hidden
+      />
+      <div className="relative z-[2] flex w-full max-w-[42rem] flex-col items-center gap-8 px-[2cm] text-center sm:gap-10">
+        <div className="flex flex-col items-center gap-4 sm:gap-5 w-full max-w-lg px-2">
+          <div className="hero-logo-motion flex w-full justify-center py-1">
+            <img
+              src="/logo.svg"
+              alt=""
+              width={1134}
+              height={1118}
+              decoding="async"
+              fetchPriority="high"
+              draggable={false}
+              className="hero-logo-motion__inner w-full max-w-[min(100%,22rem)] sm:max-w-[min(100%,26rem)] h-auto object-contain select-none"
+            />
+          </div>
+          <h1 className="text-xl sm:text-2xl font-medium tracking-tight text-gray-900 text-center">
+            {name}
           </h1>
           <p
-            className="font-semibold text-gray-800 text-center tracking-tight max-w-2xl px-2"
+            className="font-normal text-gray-700 text-center tracking-tight max-w-2xl"
             style={{
-              fontSize: "clamp(1.05rem, 2.8vw, 1.5rem)",
-              lineHeight: 1.35,
+              fontSize: "clamp(1.05rem, 2.8vw, 1.35rem)",
+              lineHeight: 1.4,
             }}
           >
             {role}
           </p>
         </div>
 
-        <p className="text-base sm:text-lg text-gray-600 max-w-xl leading-relaxed md:whitespace-normal">
-          {locations}
-        </p>
-
         <div className="flex flex-wrap justify-center gap-4 pt-2">
           <Button
             variant="default"
+            asChild
             className="bg-gray-900 text-white hover:bg-black px-8 py-6 text-sm font-medium rounded-md transition-all duration-300 hover:scale-105"
           >
-            {t("hero.ctaProducts")}
+            <a href="#portfolio">{t("hero.ctaProducts")}</a>
           </Button>
           <Button
             variant="outline"
+            asChild
             className="border-2 border-gray-900 bg-white text-gray-900 hover:bg-gray-100 px-8 py-6 text-sm font-medium rounded-md transition-all duration-300 hover:scale-105"
           >
-            {t("hero.ctaCollabs")}
+            <a href="#contact">{t("hero.ctaCollabs")}</a>
           </Button>
           <Button
             variant="outline"

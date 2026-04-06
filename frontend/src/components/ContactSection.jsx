@@ -16,7 +16,7 @@ const ContactSection = () => {
       className="min-h-screen bg-white/75 flex items-center justify-center px-12 py-32 scroll-mt-24"
     >
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-7xl md:text-8xl font-black mb-12 leading-tight">
+        <h2 className="text-7xl md:text-8xl font-medium tracking-tight mb-12 leading-tight">
           {t("contact.titleLine1")}
           <br />
           {t("contact.titleLine2")}
