@@ -135,147 +135,43 @@
     will-change: auto;
   }
 
-  .hero-logo-motion::before,
-  .hero-logo-motion::after {
-    animation: none !important;
-    opacity: 0.65 !important;
-  }
-
   .hero-logo-motion__inner {
     animation: none !important;
     transform: none !important;
-    filter: drop-shadow(0 4px 14px rgba(15, 23, 42, 0.07)) !important;
   }
 }
 
-/* Hero orta panel: çok açık gri + hafif derinlik; üstte çok hafif noise dokusu */
-.hero-panel-bg {
+/* Hero: zemin portföy ile aynı; beyaz kare sabit, logo rotateY ile sağ öne → nötr → sol öne → nötr (loop) */
+.hero-logo-square {
   isolation: isolate;
-  overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    #fafafa 0%,
-    #f3f3f5 48%,
-    #ececef 100%
-  );
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.75),
-    0 0 0 1px rgba(15, 23, 42, 0.04),
-    0 10px 40px -12px rgba(15, 23, 42, 0.07);
-}
-
-.hero-panel-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.32;
-  mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 112px 112px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-panel-bg {
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.75),
-      0 0 0 1px rgba(15, 23, 42, 0.04);
-  }
-
-  .hero-panel-bg::after {
-    opacity: 0.18;
-  }
-}
-
-/* Hero logo: 3D salınım + “focus light” (üstten spot + hafif üst highlight) */
-.hero-logo-motion {
-  position: relative;
-  isolation: isolate;
-  perspective: 650px;
-  transform-style: preserve-3d;
+  background-color: #ffffff !important;
+  perspective: 480px;
+  perspective-origin: 50% 50%;
   overflow: visible;
 }
 
-/* Arkadaki yumuşak spot — sahne ışığı gibi, hafif nefes */
-.hero-logo-motion::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 48%;
-  z-index: 0;
-  width: 120%;
-  max-width: 30rem;
-  aspect-ratio: 1.05;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse 52% 44% at 50% 44%,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.14) 48%,
-    transparent 68%
-  );
-  filter: blur(14px);
-  opacity: 0.82;
-  animation: hero-focus-spot 10s ease-in-out infinite alternate;
-}
-
-/* Önde çok hafif “specular” — logonun üstünde odak parlaması */
-.hero-logo-motion::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 2;
-  width: min(48%, 11rem);
-  height: 22%;
-  transform: translate(-50%, -118%);
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at 50% 50%,
-    rgba(255, 255, 255, 0.42) 0%,
-    rgba(255, 255, 255, 0.06) 52%,
-    transparent 72%
-  );
-  filter: blur(5px);
-  mix-blend-mode: soft-light;
-  opacity: 0.75;
-}
-
 .hero-logo-motion__inner {
-  position: relative;
-  z-index: 1;
   transform-origin: 50% 50%;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  animation: hero-logo-y-sway 3.25s ease-in-out infinite;
-  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.42))
-    drop-shadow(0 0 32px rgba(255, 255, 255, 0.12))
-    drop-shadow(0 8px 24px rgba(15, 23, 42, 0.07));
+  /* linear: orta konumda ease yüzünden oluşan duraklama olmaz */
+  animation: hero-logo-side-swing 7s linear infinite;
 }
 
-@keyframes hero-focus-spot {
+/* +rotateY: sağ kenar öne; -rotateY: sol kenar öne */
+@keyframes hero-logo-side-swing {
   0%,
   100% {
-    opacity: 0.72;
-    transform: translate(-50%, -50%) scale(1);
+    transform: rotateY(0deg) translateZ(0);
   }
-
-  50% {
-    opacity: 0.9;
-    transform: translate(-50%, -50%) scale(1.04);
-  }
-}
-
-@keyframes hero-logo-y-sway {
-  0%,
-  100% {
-    transform: rotateY(-9deg);
+  25% {
+    transform: rotateY(24deg) translateZ(0);
   }
   50% {
-    transform: rotateY(9deg);
+    transform: rotateY(0deg) translateZ(0);
+  }
+  75% {
+    transform: rotateY(-24deg) translateZ(0);
   }
 }
 

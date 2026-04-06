@@ -9,14 +9,29 @@ import ezgi4 from "../assets/images/ezgi4.png";
 
 const FALLBACK_IMAGES = [ezgi1, ezgi2, ezgi3, ezgi4];
 
+function editorialSlotIndex(i) {
+  if (i === 2) return 3;
+  if (i === 3) return 2;
+  return i;
+}
+
 const PortfolioSection = () => {
   const { t, locale } = useLanguage();
   const staticProjects = t("portfolio.projects");
 
-  /** null = yerel liste kullan; undefined = yükleniyor; dizi = Supabase satırları */
   const [remoteRows, setRemoteRows] = useState(
     isSupabaseConfigured ? undefined : null,
   );
+  const [colorRevealedIds, setColorRevealedIds] = useState(() => new Set());
+
+  const revealColor = (id) => {
+    setColorRevealedIds((prev) => {
+      if (prev.has(id)) return prev;
+      const next = new Set(prev);
+      next.add(id);
+      return next;
+    });
+  };
 
   useEffect(() => {
     if (!isSupabaseConfigured || !supabase) {
@@ -67,57 +82,117 @@ const PortfolioSection = () => {
     }));
   }, [remoteRows, staticProjects, locale]);
 
+  const editorialSlots = useMemo(() => {
+    const raw = t("portfolio.projects");
+    return Array.isArray(raw) ? raw : [];
+  }, [t]);
+
   if (remoteRows === undefined) {
     return (
-      <section id="portfolio" className="py-32 px-12 bg-white/75 scroll-mt-24">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-6xl font-medium mb-4 tracking-tight">{t("portfolio.title")}</h2>
+      <section id="portfolio" className="scroll-mt-24 bg-white/75 px-6 py-32 sm:px-12">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="mb-4 text-5xl font-medium tracking-tight sm:text-6xl">{t("portfolio.title")}</h2>
           <p className="text-xl text-gray-600">{t("portfolio.subtitle")}</p>
-          <p className="mt-16 text-gray-500 text-sm">Yükleniyor…</p>
+          <p className="mt-16 text-sm text-gray-500">Yükleniyor…</p>
         </div>
       </section>
     );
   }
 
   return (
-    <section id="portfolio" className="py-32 px-12 bg-white/75 scroll-mt-24">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-20">
-          <h2 className="text-6xl font-medium mb-4 tracking-tight">{t("portfolio.title")}</h2>
-          <p className="text-xl text-gray-600">{t("portfolio.subtitle")}</p>
-        </div>
+    <section id="portfolio" className="scroll-mt-24 bg-white/75 px-6 py-24 sm:px-12 sm:py-32">
+      <div className="mx-auto w-full max-w-[min(100%,88rem)]">
+        <header className="mb-16 md:mb-24">
+          <h2 className="mb-4 text-5xl font-medium tracking-tight sm:text-6xl">{t("portfolio.title")}</h2>
+          <p className="max-w-2xl text-xl text-gray-600">{t("portfolio.subtitle")}</p>
+        </header>
 
-        <div className="grid grid-cols-2 gap-12">
-          {list.map((project) => (
-            <div key={project.id} className="group cursor-pointer">
-              <div className="relative overflow-hidden mb-6 aspect-[4/3] bg-gray-100">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
-              </div>
-              <div className="flex items-start justify-between gap-4">
-                <div className="min-w-0">
-                  <h3 className="text-2xl font-medium mb-1 group-hover:translate-x-2 transition-transform duration-300">
-                    {project.title}
-                  </h3>
-                  {project.description ? (
-                    <p className="mt-2 text-base text-gray-600 leading-relaxed whitespace-pre-line">
-                      {project.description}
-                    </p>
-                  ) : (
-                    <p className="text-gray-500">
-                      {project.category} • {project.year}
-                    </p>
-                  )}
-                </div>
-                <ArrowUpRight className="w-6 h-6 text-gray-400 group-hover:text-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 shrink-0" />
-              </div>
+        {list.length === 0 ? (
+          <p className="text-gray-500">{locale === "tr" ? "Henüz proje yok." : "No projects yet."}</p>
+        ) : (
+          <div className="flex w-full justify-start overflow-x-auto pb-2 sm:overflow-visible">
+            <div
+              className="portfolio-editorial-chain relative ml-0 shrink-0 [--tile:max(27rem,min(85vh,min(84vw,84rem)))]"
+              style={{
+                width: "max(calc(2 * var(--tile)), calc(var(--tile) + min(54rem, min(58vw, 63rem))))",
+                minHeight: `calc(${list.length} * var(--tile))`,
+              }}
+            >
+              {list.map((project, i) => {
+                const left = i % 2 === 0 ? "0" : "var(--tile)";
+                const top = `calc(${i} * var(--tile))`;
+                const colorOn = colorRevealedIds.has(project.id);
+                return (
+                  <article
+                    key={project.id}
+                    className="group absolute z-[1] cursor-pointer overflow-hidden bg-gray-100"
+                    style={{
+                      left,
+                      top,
+                      width: "var(--tile)",
+                      height: "var(--tile)",
+                    }}
+                    onMouseEnter={() => revealColor(project.id)}
+                    onFocus={() => revealColor(project.id)}
+                    tabIndex={0}
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className={`h-full w-full object-cover transition-all duration-500 group-hover:scale-[1.03] ${colorOn ? "" : "grayscale"}`}
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-black opacity-0 transition-opacity duration-500 group-hover:opacity-10" />
+                  </article>
+                );
+              })}
+
+              {list.map((project, i) => {
+                const slot = editorialSlots[editorialSlotIndex(i)];
+                const swapLorisKonsept = i === 2 || i === 3;
+                const title = swapLorisKonsept
+                  ? (slot?.title ?? project.title)
+                  : project.title || slot?.title;
+                const description = swapLorisKonsept
+                  ? (slot?.description ?? project.description)
+                  : project.description ?? slot?.description ?? null;
+                const placement = i % 2 === 0 ? "after" : "before";
+                const top = `calc((${i} + 0.5) * var(--tile))`;
+                const widthAfter =
+                  "min(54rem, max(12rem, calc(100vw - var(--tile) - 7rem)))";
+                const widthBefore =
+                  "min(54rem, max(12rem, calc(var(--tile) - 0.75rem)))";
+                return (
+                  <div
+                    key={`editorial-${project.id}`}
+                    className="group portfolio-editorial-text absolute z-[3] box-border flex max-h-[min(85vh,48rem)] -translate-y-1/2 flex-col gap-3 overflow-y-auto overflow-x-hidden rounded-sm border border-gray-200/40 bg-white/95 p-5 text-left shadow-sm backdrop-blur-sm sm:gap-4 sm:p-6"
+                    style={{
+                      left: placement === "after" ? "var(--tile)" : "0",
+                      top,
+                      width: placement === "after" ? widthAfter : widthBefore,
+                    }}
+                  >
+                    <h3 className="text-2xl font-medium leading-snug tracking-tight text-gray-900 sm:text-3xl">
+                      {title}
+                    </h3>
+                    {description ? (
+                      <p className="text-base leading-relaxed whitespace-pre-line text-gray-700">
+                        {description}
+                      </p>
+                    ) : (
+                      <p className="text-base text-gray-600">
+                        {project.category} • {project.year}
+                      </p>
+                    )}
+                    <ArrowUpRight
+                      className="mt-2 h-6 w-6 shrink-0 text-gray-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-black"
+                      aria-hidden
+                    />
+                  </div>
+                );
+              })}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );

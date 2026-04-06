@@ -37,26 +37,23 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white/75 px-4 pt-24 pb-28 sm:pt-28 sm:pb-32"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white/75 px-4 pb-28 pt-24 sm:pb-32 sm:pt-28"
     >
-      {/* Orta sütun: çok açık gri + hafif derinlik (gölge / ring / üst highlight); içerikle aynı ölçüler */}
-      <div
-        className="hero-panel-bg pointer-events-none absolute inset-y-0 left-1/2 z-[1] -translate-x-1/2 box-border w-[min(100%,calc(100vw-2rem))] max-w-[42rem] px-[2cm]"
-        aria-hidden
-      />
-      <div className="relative z-[2] flex w-full max-w-[42rem] flex-col items-center gap-8 px-[2cm] text-center sm:gap-10">
-        <div className="flex flex-col items-center gap-4 sm:gap-5 w-full max-w-lg px-2">
-          <div className="hero-logo-motion flex w-full justify-center py-1">
-            <img
-              src="/logo.svg"
-              alt=""
-              width={1134}
-              height={1118}
-              decoding="async"
-              fetchPriority="high"
-              draggable={false}
-              className="hero-logo-motion__inner w-full max-w-[min(100%,22rem)] sm:max-w-[min(100%,26rem)] h-auto object-contain select-none"
-            />
+      <div className="relative z-[1] flex w-full max-w-[42rem] flex-col items-center gap-8 px-[2cm] text-center sm:gap-10">
+        <div className="flex w-full max-w-lg flex-col items-center gap-4 px-2 sm:gap-5">
+          <div className="flex w-full justify-center">
+            <div className="hero-logo-square flex aspect-square w-full max-w-[min(100%,23.4rem)] items-center justify-center rounded-none sm:max-w-[26rem]">
+              <img
+                src="/logo.svg"
+                alt=""
+                width={1134}
+                height={1118}
+                decoding="async"
+                fetchPriority="high"
+                draggable={false}
+                className="hero-logo-motion__inner max-h-[85%] max-w-[85%] object-contain select-none"
+              />
+            </div>
           </div>
           <h1 className="text-xl sm:text-2xl font-medium tracking-tight text-gray-900 text-center">
             {name}
